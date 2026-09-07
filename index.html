@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Journaling & Stationery Portfolio</title>
+  <style>
+    :root {
+      --cream: #fffaf6;
+      --paper: #fffdfb;
+      --pink: #f6cbd6;
+      --pink-soft: #fdeaf0;
+      --brown: #5f4636;
+      --brown-soft: #9b7a66;
+      --line: #ead8ce;
+      --shadow: 0 1px 2px rgba(95, 70, 54, .06), 0 10px 28px rgba(95, 70, 54, .08);
+      --radius: 18px;
+      --max: 1120px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--brown);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, "Noto Sans JP", "Noto Sans KR", sans-serif;
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+    a { color: inherit; }
+
+    .page {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 24px 18px 56px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+      color: var(--brown-soft);
+      font-size: 14px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      color: var(--brown);
+      letter-spacing: .01em;
+    }
+
+    .mark {
+      width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--pink-soft);
+      color: var(--brown);
+    }
+
+    .nav {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav a {
+      text-decoration: none;
+      padding: 7px 10px;
+      border-radius: 999px;
+    }
+
+    .nav a:hover,
+    .nav a:focus-visible {
+      background: var(--pink-soft);
+      outline: none;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items: stretch;
+      margin-bottom: 18px;
+    }
+
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .intro {
+      padding: 34px;
+      min-height: 340px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      gap: 8px;
+      color: var(--brown-soft);
+      background: var(--pink-soft);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(34px, 5vw, 64px);
+      line-height: .96;
+      letter-spacing: -.055em;
+      color: var(--brown);
+      max-width: 720px;
+    }
+
+    .pink { color: #d98096; }
+
+    .lead {
+      margin: 18px 0 0;
+      max-width: 620px;
+      color: var(--brown-soft);
+      font-size: 18px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 26px;
+    }
+
+    .tag {
+      border: 1px solid var(--line);
+      background: #fff7f9;
+      color: var(--brown-soft);
+      border-radius: 999px;
+      padding: 7px 11px;
+      font-size: 13px;
+    }
+
+    .profile {
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .photo {
+      min-height: 160px;
+      border: none;
+      border-radius: 16px;
+      background: transparent;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 0;
+      color: var(--brown-soft);
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .mini {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px;
+      background: #fffaf8;
+    }
+
+    .mini strong {
+      display: block;
+      font-size: 20px;
+      color: var(--brown);
+      line-height: 1.1;
+    }
+
+    .mini span { color: var(--brown-soft); font-size: 12px; }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .section {
+      padding: 20px;
+    }
+
+    .wide { grid-column: span 2; }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 18px;
+      letter-spacing: -.015em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--brown);
+    }
+
+    h2 .sticker {
+      width: 28px;
+      height: 28px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      background: var(--pink-soft);
+      border: 1px solid var(--line);
+      font-size: 14px;
+    }
+
+    p { margin: 0; }
+
+    .muted { color: var(--brown-soft); }
+
+    .link-list {
+      display: grid;
+      gap: 9px;
+    }
+
+    .link-button {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      text-decoration: none;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 11px 12px;
+      background: #fffaf8;
+      min-height: 46px;
+    }
+
+    .link-button:hover,
+    .link-button:focus-visible {
+      border-color: var(--pink);
+      background: var(--pink-soft);
+      outline: none;
+    }
+
+    .arrow { color: #d98096; }
+
+    .work {
+      padding: 22px;
+      margin-bottom: 18px;
+    }
+
+    .work-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    .work-head p { max-width: 560px; }
+
+    .tiles {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .tile {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fffaf8;
+      padding: 14px;
+      min-height: 150px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-decoration: none;
+    }
+
+    .tile:hover,
+    .tile:focus-visible {
+      background: var(--pink-soft);
+      outline: none;
+    }
+
+    .format {
+      width: fit-content;
+      color: #d98096;
+      background: #fff2f5;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 5px 9px;
+      font-size: 12px;
+      margin-bottom: 16px;
+    }
+
+    .tile h3 {
+      margin: 0 0 8px;
+      font-size: 16px;
+      line-height: 1.25;
+    }
+
+    .tile small { color: var(--brown-soft); }
+
+    .cta {
+      margin-top: 34px;
+      padding: 26px;
+      text-align: center;
+      background: var(--pink-soft);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .cta h2 {
+      justify-content: center;
+      margin-bottom: 8px;
+      font-size: 24px;
+    }
+
+    .cta p {
+      color: var(--brown-soft);
+      max-width: 560px;
+      margin: 0 auto 18px;
+    }
+
+    .email-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 999px;
+      background: var(--brown);
+      color: white;
+      text-decoration: none;
+      font-weight: 700;
+      box-shadow: 0 8px 20px rgba(95, 70, 54, .16);
+    }
+
+    .email-cta:hover,
+    .email-cta:focus-visible {
+      background: #4c382c;
+      outline: 3px solid rgba(246, 203, 214, .8);
+      outline-offset: 3px;
+    }
+
+    footer {
+      color: var(--brown-soft);
+      text-align: center;
+      font-size: 13px;
+      margin-top: 20px;
+    }
+
+    @media (max-width: 900px) {
+      .hero,
+      .section-grid,
+      .tiles { grid-template-columns: 1fr; }
+      .wide { grid-column: auto; }
+      .intro { min-height: auto; padding: 26px; }
+      .topbar { align-items: flex-start; flex-direction: column; }
+      .nav { justify-content: flex-start; }
+    }
+
+    @media (max-width: 520px) {
+      .page { padding: 18px 14px 40px; }
+      .intro, .profile, .section, .work, .cta { padding: 18px; }
+      .lead { font-size: 16px; }
+      .mini-grid { grid-template-columns: 1fr; }
+      .work-head { align-items: flex-start; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="topbar" aria-label="Site header">
+      <div class="brand"><span class="mark">♡</span><span>zari 🐰</span></div>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#work">Work</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="card intro">
+        <div>
+          <div class="eyebrow">✿ art & crafts • scrapbooking • stationery </div>
+          <h1><span class="pink">Hi, I'm</span><br />Zari ✩࿐࿔ </h1>
+          <p class="lead">I create cozy content about journaling and stationery to inspire people all over the world! My priority is showing people they don't have to be a professional to do what they love. I truly believe, and keep advertising it, that creativity isn't about being perfect or consistent, but about showing up, having fun, and making life feel a little sweeter without being on your phone ˙𐃷˙</p>
+          <div class="tags" aria-label="Content topics">
+            <span class="tag">journaling inspiration</span>
+            <span class="tag">stationery hauls</span>
+            <span class="tag">page ideas</span>
+            <span class="tag">funny & relatable content</span>
+          </div>
+        </div>
+      </div>
+
+      <aside class="card profile" aria-label="Creator snapshot">
+        <div class="photo">
+  <img src="https://i.imgur.com/DDNXG3S.jpeg" alt="Zari" style="width:100%; border-radius:20px; display: block;" />
+</div>
+        <div class="mini-grid">
+          <div class="mini"><strong>17k</strong><span>Instagram</span></div>
+          <div class="mini"><strong>12k</strong><span>TikTok</span></div>
+          <div class="mini"><strong>EU · PL</strong><span>Based in</span></div>
+          <div class="mini"><strong>5-10d</strong><span>Turnaround</span></div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section-grid" id="about">
+      <article class="card section wide">
+        <h2><span class="sticker">✎</span>About me</h2>
+        <p class="muted">I share journaling and stationery content, including spread ideas, product reviews, cozy "journal with me" videos, and lots of funny, relatable posts. I keep it real, soft, and useful. My audience is primarily women (94.9% on Instagram and 78% on TikTok) aged 18 to 34, mostly in the US, UK, India, and Brazil. I’ve partnered with brands such as Paperwrld, Journalsay, Musso EU, Menmin Made, IEEBEE Washi Tape, and Shuttle Art, creating different kinds of content for each. My most recent collaboration was with Menmin Made, and we are currently running a partnership ad!</p>
+      </article>
+
+      <article class="card section">
+        <h2><span class="sticker">☕</span>Brand fit</h2>
+        <p class="muted">If you're a brand or an individual focused on journals, stickers, washi tapes, pens, or stationery in general — I'd love to hear from you! I also welcome different kinds of mail clubs. If you think your product could be related to journaling, send me a word, and we'll talk about it! ♡</p>
+      </article>
+
+      <article class="card section">
+        <h2><span class="sticker">♡</span>Links</h2>
+        <div class="link-list">
+          <a class="link-button" href="https://www.instagram.com/zari.journals/" target="_blank" rel="noreferrer">Instagram <span class="arrow">↗</span></a>
+          <a class="link-button" href="https://www.tiktok.com/@zari.journals" target="_blank" rel="noreferrer">TikTok <span class="arrow">↗</span></a>
+        </div>
+      </article>
+
+      <article class="card section wide">
+        <h2><span class="sticker">❀</span>Collab info</h2>
+        <p class="muted">I'm open to gifted campaigns, paid UGC, brand partnerships, product reviews, affiliate content, and short-form video packages, so practically everything! I create organic ads that feel authentic — and I'm happy to follow your brief or take the creative lead if you trust my vision. I love meeting new people, so whether you're a brand or an individual with a fun idea, don't be shy to say hi. Whatever you need, I've got you ♡ </p>
+      </article>
+    </section>
+
+    <section class="card work" id="work">
+      <div class="work-head">
+        <div>
+          <h2><span class="sticker">✿</span>Best work</h2>
+          <p class="muted" style="white-space: nowrap;">Some of my favorite pieces I’ve created as part of collaborations and as regular content! ⟡</p>
+        </div>
+      </div>
+
+      <div class="tiles">
+        <a class="tile" href="https://www.instagram.com/p/DcWWhhlNq3C/" target="_blank" rel="noreferrer">
+          <div>
+            <img src="https://i.imgur.com/xbkpPUy.jpeg" style="width: 100%; border-radius: 12px; margin-bottom: 10px;" />
+            <div class="format">Instagram reel</div>
+            <h3>Let's pack my journaling bag together feat Menmin Made </h3>
+          </div>
+          <small>230K views • active partnership ad </small>
+        </a>
+
+        <a class="tile" href="https://www.instagram.com/p/DZu0jRMt-zn/" target="_blank" rel="noreferrer">
+          <div>
+            <img src="https://i.imgur.com/6ObB9bW.jpeg" style="width: 100%; border-radius: 12px; margin-bottom: 10px;" />
+            <div class="format">Instagram reel</div>
+            <h3>Cute "if lost, return to" idea for your journal </h3>
+          </div>
+          <small>300K views • tutorial • highly inspirational </small>
+        </a>
+
+        <a class="tile" href="https://vm.tiktok.com/ZN82L9K5p/" target="_blank" rel="noreferrer">
+          <div>
+            <img src="https://i.imgur.com/pMVRpCa.jpeg" style="width: 100%; border-radius: 12px; margin-bottom: 10px;" />
+            <div class="format">Tiktok carousel</div>
+            <h3>Easy journaling ideas for those who don't know where to start </h3>
+          </div>
+          <small>374K views • useful • inspirational </small>
+        </a>
+      </div>
+    </section>
+
+    <section class="cta" id="contact" aria-label="Contact call to action">
+      <h2>Want to make something cute together?</h2>
+      <p>For collaborations, UGC, or stationery reviews, send me a little note! </p>
+      <div style="display: flex; justify-content: center; flex-wrap: wrap; margin-top: 10px;">
+      <a class="email-cta" href="mailto:zaribunn@email.com" style="margin-right: 15px;">Email ♡</a>
+      <a class="email-cta" href="https://wa.me/48798331756">WhatsApp ✧</a>
+    </section>
+
+    <footer>
+      © <span id="year"></span> • zari 🐰 • journaling & stationery creator
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
